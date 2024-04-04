@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+<link rel="stylesheet" href="~/css/lead.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/js/site.js" asp-append-version="true" />
+
+
+<h1>@ViewData["Title"]</h1>
+
+<!--dust particel-->
+<ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<!--Dust particle end--->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="wrapper my-5 mx-auto">
+                <div class="form signup">
+                    <header>Signup</header>
+                    <form action="#">
+                        <input type="text" placeholder="Full name" required />
+                        <input type="text" placeholder="Email address" required />
+                        <input type="password" placeholder="Password" required />
+                        <div class="checkbox">
+                            <input type="checkbox" id="signupCheck" />
+                            <label for="signupCheck">I accept all terms & conditions</label>
+                        </div>
+                        <input type="submit" value="Signup" />
+                    </form>
+                </div>
+                <div class="form login">
+                    <header>Login</header>
+                    <form action="#">
+                        <input type="text" placeholder="Email address" required />
+                        <input type="password" placeholder="Password" required />
+                        <a href="#">Forgot password?</a>
+                        <input type="submit" value="Login" />
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+
