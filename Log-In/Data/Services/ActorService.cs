@@ -10,7 +10,7 @@ namespace Log_In.Data.Services
         {
             _context = context;
         }
-        public void Add(Actor actor)
+        public async Task<Actor> AddAsync(Actor actor)
         {
             _context.Actor.Add(actor);
             _context.SaveChanges();
@@ -38,9 +38,11 @@ namespace Log_In.Data.Services
             throw new NotImplementedException();
         }
 
-        public void Update(int id, Actor newActor)
+        public async void Update(int id, Actor newActor)
         {
-            throw new NotImplementedException();
+            _context.Update(newActor);
+            await _context.SaveChanges();
+            return newActor;
         }
     }
 }

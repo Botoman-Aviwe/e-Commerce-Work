@@ -33,12 +33,40 @@ namespace Log_In.Controllers
         {
             var actorDetails = await _service.GetById(id);
 
-            if (actorDetails == null) return View("Empty");
+            if (actorDetails == null) return View("Not Found");
             return View(actorDetails);
        
         }
 
-            // GET: Actor/Create
+        // GET: Actor/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetById(id);
+
+            if (actorDetails == null) return View("Not Found");
+            return View(actorDetails);
+            
+        }
+
+        // POST: Actor/Edit
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (ModelState.IsValid)
+            {
+                //_service.Add(actor);
+                //_service.SaveChangesAsync();
+                return View(actor);
+
+            }
+            _service.Update(id,actor);
+            return RedirectToAction("Index");
+        }
+
+        // GET: Actor/Create
         public IActionResult Create()
         {
             return View();
@@ -49,7 +77,10 @@ namespace Log_In.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
+
+
+        // Withe the async added here I am testing this code
+        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +89,7 @@ namespace Log_In.Controllers
                 return View(actor);
               
             }
-             _service.Add(actor);
+            await _service.Add(actor);
             return RedirectToAction("Index");
         }
 
