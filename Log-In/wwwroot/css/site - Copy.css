@@ -1,0 +1,4 @@
+﻿.double-border {
+    border: 3px double black; /* Adjust thickness and color as needed */
+    padding: 5px; /* Optional: Add padding to the table */
+}
