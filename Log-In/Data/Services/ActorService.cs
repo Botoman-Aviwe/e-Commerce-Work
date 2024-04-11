@@ -16,9 +16,11 @@ namespace Log_In.Data.Services
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public async Task<Actor>Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actor.FirstOrDefaultAsync(n => n.Id == id);
+            await _context.Actor.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>> GetAll()

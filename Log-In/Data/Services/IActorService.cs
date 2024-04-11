@@ -9,7 +9,7 @@ namespace Log_In.Data.Services
        // void Add(Actor actor);
         //This is the testing Add
         Task<Actor> AddAsync(Actor actor);
-        void Delete(int id);
+        Task<Actor> DeleteAsync(int id);
         void Update(int id, Actor newActor);
         void SaveChangesAsync();
     }

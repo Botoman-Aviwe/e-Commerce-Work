@@ -66,6 +66,34 @@ namespace Log_In.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Actor/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            //Checking if the actor is availabl if not not found to desplay
+            var actorDetails = await _service.GetById(id);
+
+            if (actorDetails == null) return View("Not Found");
+            return View(actorDetails);
+
+        }
+
+        // POST: Actor/Edit
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost,Action("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirm(int id)
+        {
+            //Checking if the actor is availabl if not not found to desplay
+            var actorDetails = await _service.GetById(id);
+
+            if (actorDetails == null) return View("Not Found");
+
+            await _service.DeleteAsync(id);
+           
+            return RedirectToAction("Index");
+        }
+
         // GET: Actor/Create
         public IActionResult Create()
         {
