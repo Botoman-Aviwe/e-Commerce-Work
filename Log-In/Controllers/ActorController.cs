@@ -53,7 +53,7 @@ namespace Log_In.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
+        public async Task<IActionResult> Edit(int id,[Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Log_In.Controllers
                 return View(actor);
 
             }
-            _service.Update(id,actor);
+            await _service.UpdateAsync(id,actor);
             return RedirectToAction("Index");
         }
 
@@ -80,7 +80,7 @@ namespace Log_In.Controllers
         // POST: Actor/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost,Action("Delete")]
+        [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
@@ -117,7 +117,7 @@ namespace Log_In.Controllers
                 return View(actor);
               
             }
-            await _service.Add(actor);
+            _service.Add(actor);
             return RedirectToAction("Index");
         }
 

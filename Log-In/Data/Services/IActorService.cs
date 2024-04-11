@@ -5,12 +5,9 @@ namespace Log_In.Data.Services
     {
         Task<IEnumerable<Actor>> GetAll();
         Task<Actor> GetById(int id);
-        //Test if this will work I have 2 Add but  they are different
-       // void Add(Actor actor);
-        //This is the testing Add
-        Task<Actor> AddAsync(Actor actor);
-        Task<Actor> DeleteAsync(int id);
-        void Update(int id, Actor newActor);
+        void Add(Actor actor);
+        Task DeleteAsync(int id);
+        Task<Actor> UpdateAsync(int id, Actor newActor);
         void SaveChangesAsync();
     }
 }

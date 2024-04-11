@@ -10,23 +10,23 @@ namespace Log_In.Data.Services
         {
             _context = context;
         }
-        public async Task<Actor> AddAsync(Actor actor)
+        public void Add(Actor actor)
         {
             _context.Actor.Add(actor);
             _context.SaveChanges();
         }
 
-        public async Task<Actor>Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var result = await _context.Actor.FirstOrDefaultAsync(n => n.Id == id);
-            await _context.Actor.Remove(result);
+            _context.Actor.Remove(result);
             await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>> GetAll()
         {
             var result = _context.Actor.ToList();
-            return result;
+            return result; ;
         }
 
         public async Task<Actor> GetById(int id)
@@ -40,10 +40,10 @@ namespace Log_In.Data.Services
             throw new NotImplementedException();
         }
 
-        public async void Update(int id, Actor newActor)
+        public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
             _context.Update(newActor);
-            await _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return newActor;
         }
     }
