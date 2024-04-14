@@ -1,4 +1,4 @@
-﻿
+﻿ 
 using Log_In.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +11,9 @@ namespace Log_In.Data.Base
         {
             _context = context;
         }
-        public Task<T> AddAsync(T Entity)
+        public async Task<T> AddAsync(T Entity)
         {
-            throw new NotImplementedException();
+           await _context.Set<T>().Add(Entity);
         }
 
         public Task<T> DeleteAsync(int id)
