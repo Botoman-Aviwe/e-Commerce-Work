@@ -1,9 +1,10 @@
-﻿using Log_In.Models;
+﻿using Log_In.Data.Base;
+using Log_In.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Log_In.Data.Services
 {
-    public class ActorService : IActorService
+    public class ActorService :EntityBaseRepository<Actor>, IActorService
     {
         private readonly ApplicationDbContext _context;
         public ActorService(ApplicationDbContext context)

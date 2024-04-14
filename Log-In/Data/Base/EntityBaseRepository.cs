@@ -14,6 +14,7 @@ namespace Log_In.Data.Base
         public async Task<T> AddAsync(T Entity)
         {
            await _context.Set<T>().Add(Entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<T> DeleteAsync(int id)
@@ -21,7 +22,9 @@ namespace Log_In.Data.Base
             var entity=await _context.Set<T>().FirstDefaultAsync(n=>n.Id==id);
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
+    }
 
         public async Task<IEnumerable<T>> GetAll()
         {
@@ -44,6 +47,8 @@ namespace Log_In.Data.Base
         {
             EntityEntry entityEntry=_context.Entry<T>(entity);
             entityEntry.State=EntityState.Modified;
+         await _context.SaveChangesAsync();
+
         }
     }
-}
+
