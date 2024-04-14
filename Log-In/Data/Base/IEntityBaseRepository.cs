@@ -11,7 +11,7 @@ namespace Log_In.Data.Base
         //This is the testing Add
         Task<T> AddAsync(T Entity);
         Task<T> DeleteAsync(int id);
-        void Update(int id, T entity);
+        Task Update(int id, T entity);
         void SaveChangesAsync();
     }
 }

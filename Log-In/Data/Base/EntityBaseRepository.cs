@@ -16,9 +16,11 @@ namespace Log_In.Data.Base
            await _context.Set<T>().Add(Entity);
         }
 
-        public Task<T> DeleteAsync(int id)
+        public async Task<T> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity=await _context.Set<T>().FirstDefaultAsync(n=>n.Id==id);
+            EntityEntry entityEntry = _context.Entry<T>(entity);
+            entityEntry.State = EntityState.Deleted;
         }
 
         public async Task<IEnumerable<T>> GetAll()
@@ -38,9 +40,10 @@ namespace Log_In.Data.Base
             throw new NotImplementedException();
         }
 
-        public void Update(int id, T entity)
+        public async Task<T> UpdateAsync(int id, T entity)
         {
-            throw new NotImplementedException();
+            EntityEntry entityEntry=_context.Entry<T>(entity);
+            entityEntry.State=EntityState.Modified;
         }
     }
 }
